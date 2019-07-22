@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JioSaavn</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b06605e970.js"></script>
+    <link rel="stylesheet" href="./assests/stylesheet.css">
+    <script src="./assests/main.js"></script>
+    <script src="./assests/songs.js"></script>
+    <script src="./assests/model.js"></script>
+</head>
+<body>
+    <div id="loader">
+        <div id="logo">
+            <img src="https://pngimage.net/wp-content/uploads/2018/06/gaana-logo-png-1.png" alt="">
+        </div>
+        <div id="shadow">
+            
+        </div>
+    </div>
+
+    <div id="container">
+        <header>
+    
+            
+
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="#"> 
+                
+                  <img id="logo" src="https://pngimage.net/wp-content/uploads/2018/06/gaana-logo-png-1.png" alt=""> </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                            <form class="form-inline my-2 my-lg-0">
+                                    <input autocomplete="off" class="form-control mr-sm-2" id="searchbar" onkeyup="search_song()" type="search" placeholder="Search" aria-label="Search">
+                                   
+                                  </form>
+                      <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
+                    </li>
+                    <!-- <li class="nav-item">
+                      <a class="nav-link" href="#">Link</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">RADIO</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">DISCOVER</a>
+                        </li>
+                   
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">MY MUSIC</a>
+                    </li>
+                    
+                    
+                        
+                    <!-- <li class="nav-item">
+                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li> -->
+                  </ul>
+                  <div class="nav-item">
+                        <a class="nav-link" href="#">Log In</a>
+                    </div>
+                  <!-- <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form> -->
+                </div>
+              </nav>
+        </header>
+      
+          
+        <div id="audioPlayer">
+       <div class="row">
+
+       <div class="col-md-4">
+          <div class="row">
+              <div class="col-md-6">
+                <div id="current_song">
+                  <div id="equalizer">
+
+                  </div>
+                  <span id="current_song_name">
+
+                  </span>
+                </div>
+   
+              </div>
+              <div class="col-md-6">
+                 <button id="previous">
+                     <!-- <i class="fas fa-angle-double-left"></i> -->
+                     <i class="fas fa-step-backward"></i>
+                 </button>
+                 <span id="playbutton">
+                    <button id="play">
+                        <i class="fas fa-play"></i>
+                    </button>
+                  </span>
+                 
+                 <button id="next">
+                     <!-- <i class="fas fa-angle-double-right"></i> -->
+                     <i class="fas fa-step-forward"></i>
+                 </button>
+               </div>
+            </div>
+
+       </div>
+       <div class="col-md-6 progress_section">
+          <span class="song_curr_time">00:00</span>
+          <audio id="audio">
+              <source src="">
+          </audio>
+          <input type="range" value="0" id="slider">
+          <span class="song_total_time">00:00</span>
+         
+        </div>
+        <div class="col-md-2">
+          <div class="row">
+            <div class="col-md-12">
+                <div id="shuffle" class="border-right "> 
+                    <button onclick="manageRepeat();" id="loop"><i class="fas fa-redo-alt"></i></button>
+                    <button onclick="ManageShuffle(); "><i class="fa fa-random" aria-hidden="true" ></i></button>
+                    <button onclick="ManageShuffle();" id="settings"><i class="fas fa-cog"></i>
+                     </button>
+                    
+                   
+                    
+                </div>
+
+            </div>
+           
+         
+          </div>
+       </div>
+      </div>
+      </div>
+        <!-- <div id="audioPlayer">
+            <div class="container">
+                <div class="main_player">
+                    <div id="music_progress">
+                    <input type="range" min="0" max="100" value="0" id="music_slider" oninput="manageAudioForwarding(this.value);">
+                    <span id="current_time" class="left song_time">0:00</span>
+                    <span id="end_time" class="song_time right">3:26</span>
+                    </div>
+                    <div>
+                <h4> <span id="cur_song"></span></h4> 
+                <button id="previous">
+                     <i class="fas fa-angle-double-left"></i> 
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <a id="play">
+                    <i class="fas fa-play"></i>
+                </a>
+                <button id="next">
+                     <i class="fas fa-angle-double-right"></i>
+                    <i class="fas fa-step-forward"></i>
+                </button>
+               
+                <span class="song_curr_time">00:00</span>
+                <audio id="audio">
+                    <source src="">
+                </audio>
+                <input type="range" value="0" id="slider">
+                <span class="song_total_time">00:00</span>
+            </div>
+        </div> -->
+        <!-- <div id="audioplayer">
+          <div class="container">
+            <h4>Current Song <span id="cur_song"></span> </h4>
+            <button id="previous" class="btn btn-danger">
+                <i class="fas fa-angle-double-left"></i>
+            </button>
+            <button id="play" class="btn btn-danger">
+                <i class="fas fa-play"></i>
+              </button>
+            <button id="next" class="btn btn-danger">
+                <i class="fas fa-angle-double-right"></i>
+            </button>
+          
+            <span class="song_curr_time">00:00</span>
+            <audio id="audio" controls>
+                <source src=""> 
+            </audio>
+            <input type="range" value="0" id="slider">
+            <span class="song_total_time">00:00</span>
+          </div>
+            
+   
+        </div> -->
+        <div id="content">
+            <div class="row">
+                <div class="col-md-1">
+                  
+                 
+                    <div id="sidebar">
+                      <!-- <ul id="playlistitems"> -->
+                          <!-- <div class="row" id="playlistitems">
+                              <div  id="playlistsongsimagesdiv"  class="col-md-4">
+                                  <ul id="playlistsongsimages">
+      
+                                    </ul>
+                              </div>
+                              <div id="playlistsongsdiv" class="col-md-8">
+                                  <ul id="playlistsongs">
+      
+                                    </ul>
+                                </div>
+                            </div> -->
+                      <!-- </ul> -->
+                      <ul id="playlistsongsitems">
+                          <div class="row">
+                              <div  id="playlistsongsimagesdiv"  class="col-md-4">
+                                 
+                                  
+                                  
+                                  <ul id="playlistsongsimages">
+                                      <hr style="color:white">
+                                      <h6>Queue</h6>
+                                      <hr style="color:white">
+                                    </ul>
+                              </div>
+                              <div id="playlistsongsdiv" class="col-md-8">
+                                  <ul id="playlistsongs">
+                                      <hr style="color:white">
+                                      <h6>Queue</h6>
+                                      <hr style="color:white">
+      
+                                    </ul>
+                                </div>
+                                <div id="morebutton">
+                                  <button class="btn"><i class="fas fa-angle-double-right"></i></button>
+                                </div>
+                                <div id="lessbutton">
+                                  <button class="btn"><i class="fas fa-angle-double-left"></i></button>
+                                </div>
+                            </div>
+
+                      </ul>
+                      
+                     
+                       
+                      
+                    </div>
+                      
+                 
+
+                  </div>
+                <div id="maincontent" class="col-md-8">
+                    <div>
+                        <div id="topsongs">
+                        <img src="https://a10.gaanacdn.com/images/showcase/1563462513_5333.jpg" alt="">
+                        <img src="https://a10.gaanacdn.com/images/showcase/1560927199_4894.jpg" alt="">
+                        <img src="https://a10.gaanacdn.com/images/showcase/1563462461_8735.jpg" alt="">
+                        <img src="https://a10.gaanacdn.com/images/showcase/1563462542_2554.jpg" alt="">
+                        <img src="https://a10.gaanacdn.com/images/showcase/1563462364_8733.jpg" alt="">
+                    </div>
+                
+                    
+                  </div>
+                      <ul id="allsongs">
+
+                    </ul>
+                </div>
+                <div class="col-md-3" id="ad_section">
+                    <!-- <img id="ads" src="https://tpc.googlesyndication.com/simgad/9390342105828912124" alt=""> -->
+                  <a href="#"> <img src="https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCHvIqhnwEQARgBMgiL3OroAwnTwg" alt=""></a>
+                  <!-- <img src="https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCHvIqhnwEQARgBMgiL3OroAwnTwg" alt=""> -->
+                  <!-- <img id="ads" src="https://tpc.googlesyndication.com/simgad/9390342105828912124" alt="">  -->
+                  <!-- <img src="https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCHvIqhnwEQARgBMgiL3OroAwnTwg" alt=""> -->
+                  <!-- <img id="ads_2" src="https://s.saavn.com/ads/2018/cdnmaster/L-vVD011218213129_saavn-default-skin-with-logo.jpg" alt=""> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <script src="./jqquery.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
